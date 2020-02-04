@@ -37,7 +37,7 @@ require('db.php');
 		if($qry){
 			session_start();
 			$_SESSION['name'] = $fname." ".$lname;
-			$_SESSION['email'] = $emai;
+			$_SESSION['email'] = $email;
 			echo $_SESSION['name'];
 			header("location:../questionnaire.php");
 			exit();

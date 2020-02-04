@@ -65,5 +65,5 @@
   </form>
   </div>
 </div>
-
+</div>
 <!-- Small modal -->
