@@ -9,7 +9,7 @@ require('db.php');
 		$contact = $_POST['contact'];
 		$address = $_POST['address'];
 		$email = $_POST['email'];
-
+		$date = date("Y-m-d");
 		$insrt = "
 		INSERT INTO applicant 
 		(
@@ -18,7 +18,8 @@ require('db.php');
 			bday,
 			contact,
 			address,
-			email
+			email,
+			date_register
 		) 
 		VALUES 
 		(
@@ -27,7 +28,8 @@ require('db.php');
 			'$bday',
 			'$contact',
 			'$address',
-			'$email'
+			'$email',
+			'$date'
 		)";
 
 		$qry = $conn->query($insrt) or trigger_error(mysqli_error($conn)." ".$insrt);

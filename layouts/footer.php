@@ -5,28 +5,49 @@
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.js"></script>
     <script>
     	$(document).ready(function(){
+            $('#iq_test').hide();
+            $('#iq_row').hide();
+
+            $('#eng_btn').click(function(){
+                $('#eng_row').hide();
+                $('#iq_test').show();
+                $('#eng_test').hide();
+                $('#iq_row').show();
+                
+            })
+            $('#iq_btn').click(function(){
+                $('#iq_row').hide();
+                $('#eng_test').show();
+                $('#iq_test').hide();
+                $('#eng_row').show();
+                
+            })
+
     		$('#add_question').click(function(){
     			$('#add_question_modal').modal('show');
     		})
-    		$('table').DataTable();
+    		
+            $('table').DataTable();
 
-    		$('.update_question').click(function(){
-    			let u_id = $(this).attr('id');
-    			console.log(u_id);
-    			$.ajax({
-    				url:'ajax-calls/question_update.php',
-    				method:'post',
-    				data:{id:u_id},
-    				success:function(data){
-    					$('#update_question_content').html(data);
-    					$('#update_question_m').modal('show');
-    				},
-    				error:function(err){
-    					console.log(err);
-    				}
-    			})
-    		})
-            $('.delete_question').click(function(){
+            $(document).on('click','.update_question',function(){
+                     let u_id = $(this).attr('id');
+                    console.log(u_id);
+                    $.ajax({
+                        url:'ajax-calls/question_update.php',
+                        method:'post',
+                        data:{id:u_id},
+                        success:function(data){
+                            $('#update_question_content').html(data);
+                            $('#update_question_m').modal('show');
+                        },
+                        error:function(err){
+                            console.log(err);
+                        }
+                    })
+            })
+                
+            $(document).on('click','.delete_question',function(){
+
                 let d_id = $(this).attr('id');
                 console.log(d_id);
                 $.ajax({
@@ -43,6 +64,29 @@
                     }
                 })
 
+            })
+
+    
+            $('#category').change(function(){
+                let category = $(this).val();
+                console.log(category);
+                if(category !== ''){
+                      $.ajax({
+                        url:'ajax-calls/question_category.php',
+                        method:'post',
+                        data:{category:category},
+                        success:function(data){
+                            $('#quest_list').html(data);
+                            console.log(data);
+                        },
+                        error:function(err){  
+                            console.log(err);
+                        }
+                    })
+                }else{
+                    location.reload();
+                }
+              
             })
     	})
     </script>

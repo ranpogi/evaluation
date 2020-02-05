@@ -30,7 +30,11 @@ include ('layouts/header.php');
          		$applicant = "SELECT * FROM applicant ORDER BY id DESC";
          		$qry = $conn->query($applicant) or trigger_error(mysqli_error($conn)." ".$applicant);
          		while($a = mysqli_fetch_assoc($qry)){?>
-         			<li><?php echo $a['fname']." ".$a['lname'] ?></li>
+         			<li>
+                <a href="test_result.php?q=<?php echo $a['id']; ?>">
+                  <?php echo $a['fname']." ".$a['lname'] ?>
+                </a>
+              </li>
          	<?php }	
 
          	?>

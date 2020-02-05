@@ -72,12 +72,22 @@
           <div class="card-header text-center">
           	<div class="row">
           		<div class="col">
-            		<h4> Questionaire </h4>
+            		<h4> Questionnaire </h4>
            		</div>
        		 </div>
           </div>
          <div class="card-body">
-	         	<div class="row justify-content-center">
+         	<div class="row">
+         		<div class="col col-md-3">
+         			<select id="category" class="form-control">
+         				<option value="">-- Sort by --</option>
+         				<option value="English Proficiency">English Proficiency</option>
+         				<option value="IQ Test">IQ Test</option>
+         				<option value="Digital Marketing">Digital Marketing</option>
+         			</select>
+         		</div>
+         	</div>
+	         	<div class="row justify-content-center mt-4">
 	         		<div class="col">
 	         			<div class="table table-responsive">
 	         				<table class="table table-striped table-bordered">
@@ -91,7 +101,7 @@
 								       <th scope="col" class="text-center">Action</th>
 								    </tr>
 								  </thead>
-								  <tbody>
+								  <tbody id="quest_list">
 									<?php
 										require('controller/db.php');
 										$question = "SELECT * FROM question ORDER BY id ASC";
@@ -106,7 +116,7 @@
 										<td class="text-center"><?php echo $a['choices']; ?></td>
 										<td class="text-center"><?php echo $a['final_answer']; ?></td>
 										<td class="text-center"><?php echo $a['category']; ?></td>
-										<td class="text-center">
+										<td class="text-center" width="15%">
 											<button type="button" id="<?php echo $a['id'] ?>" class="btn btn-info update_question">
 												Update
 											</button>
